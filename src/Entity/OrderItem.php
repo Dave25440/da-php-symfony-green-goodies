@@ -26,10 +26,12 @@ class OrderItem
 
     #[ORM\ManyToOne(inversedBy: 'orderItems')]
     #[ORM\JoinColumn(name: 'product_id', nullable: false)]
+    #[Assert\NotNull(message: 'Le produit associé est obligatoire.')]
     private ?Product $product = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderItems')]
     #[ORM\JoinColumn(name: 'purchase_id', nullable: false)]
+    #[Assert\NotNull(message: 'La commande associée est obligatoire.')]
     private ?Order $purchase = null;
 
     public function getId(): ?int

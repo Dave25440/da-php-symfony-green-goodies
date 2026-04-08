@@ -46,6 +46,7 @@ class Order
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(name: 'user_id', nullable: false)]
+    #[Assert\NotNull(message: 'L\'utilisateur associé est obligatoire.')]
     private ?User $user = null;
 
     public function __construct()
