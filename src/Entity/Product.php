@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -17,22 +18,35 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(name: 'name', length: 255)]
+    #[Assert\NotBlank(message: 'Le nom est obligatoire.')]
+    #[Assert\Length(max: 255, maxMessage: 'Le nom ne doit pas dépasser {{ limit }} caractères.')]
     private ?string $name = null;
 
     #[ORM\Column(name: 'short_description', length: 255)]
+    #[Assert\NotBlank(message: 'La description courte est obligatoire.')]
+    #[Assert\Length(max: 255, maxMessage: 'La description courte ne doit pas dépasser {{ limit }} caractères.')]
     private ?string $shortDescription = null;
 
     #[ORM\Column(name: 'full_description', type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Le description longue est obligatoire.')]
     private ?string $fullDescription = null;
 
     #[ORM\Column(name: 'price')]
+    #[Assert\NotNull(message: 'Le prix est obligatoire.')]
+    #[Assert\Positive(message: 'Le prix doit être un nombre positif.')]
     private ?float $price = null;
 
     #[ORM\Column(name: 'picture', length: 255)]
+    #[Assert\NotBlank(message: 'La photo est obligatoire.')]
+    #[Assert\Length(max: 255, maxMessage: 'Le lien de la photo ne doit pas dépasser {{ limit }} caractères.')]
+    #[Assert\Regex(
+        pattern: '/\.(jpg|jpeg|png|webp)$/i',
+        message: 'La photo doit être au format JPG, JPEG, PNG ou WebP.'
+    )]
     private ?string $picture = null;
 
-    #[ORM\Column(name: 'archive')]
-    private ?bool $archive = null;
+    #[ORM\Column(name: 'archive', options: ['default' => false])]
+    private ?bool $archive = false;
 
     /**
      * @var Collection<int, OrderItem>
