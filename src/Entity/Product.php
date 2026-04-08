@@ -13,25 +13,25 @@ class Product
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'id')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: 'name', length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: 'short_description', length: 255)]
     private ?string $shortDescription = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(name: 'full_description', type: Types::TEXT)]
     private ?string $fullDescription = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'price')]
     private ?float $price = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: 'picture', length: 255)]
     private ?string $picture = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'archive')]
     private ?bool $archive = null;
 
     /**

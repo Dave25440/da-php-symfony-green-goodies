@@ -10,21 +10,21 @@ class OrderItem
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'id')]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'quantity')]
     private ?int $quantity = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'price')]
     private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderItems')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: 'product_id', nullable: false)]
     private ?Product $product = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderItems')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: 'purchase_id', nullable: false)]
     private ?Order $purchase = null;
 
     public function getId(): ?int

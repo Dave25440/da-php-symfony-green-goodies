@@ -13,16 +13,16 @@ class Order
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'id')]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'date')]
     private ?\DateTimeImmutable $date = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: 'total')]
     private ?float $total = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: 'status', length: 255)]
     private ?string $status = null;
 
     /**
@@ -32,7 +32,7 @@ class Order
     private Collection $orderItems;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(name: 'user_id', nullable: false)]
     private ?User $user = null;
 
     public function __construct()
