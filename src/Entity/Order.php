@@ -6,6 +6,7 @@ use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
@@ -17,13 +18,25 @@ class Order
     private ?int $id = null;
 
     #[ORM\Column(name: 'date')]
+    #[Assert\NotBlank(message: 'La date est obligatoire.')]
+    #[Assert\LessThanOrEqual(
+        'today',
+        message: 'La date ne doit pas être postérieure à aujourd\'hui.'
+    )]
     private ?\DateTimeImmutable $date = null;
 
     #[ORM\Column(name: 'total')]
+    #[Assert\NotNull(message: 'Le prix total est obligatoire.')]
+    #[Assert\Positive(message: 'Le prix total doit être un nombre positif.')]
     private ?float $total = null;
 
     #[ORM\Column(name: 'status', length: 255)]
-    private ?string $status = null;
+    #[Assert\NotBlank(message: 'Le statut est obligatoire.')]
+    #[Assert\Choice(
+        choices: ['En cours', 'Traitée', 'Annulée'],
+        message: 'Le statut {{ value }} est invalide.'
+    )]
+    private string $status = 'Traitée';
 
     /**
      * @var Collection<int, OrderItem>
