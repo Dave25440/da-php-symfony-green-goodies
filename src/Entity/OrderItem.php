@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\OrderItemRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OrderItemRepository::class)]
 class OrderItem
@@ -14,9 +15,13 @@ class OrderItem
     private ?int $id = null;
 
     #[ORM\Column(name: 'quantity')]
+    #[Assert\NotNull(message: 'La quantité est obligatoire.')]
+    #[Assert\Positive(message: 'La quantité doit être un nombre positif.')]
     private ?int $quantity = null;
 
     #[ORM\Column(name: 'price')]
+    #[Assert\NotNull(message: 'Le prix est obligatoire.')]
+    #[Assert\Positive(message: 'Le prix doit être un nombre positif.')]
     private ?float $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'orderItems')]
