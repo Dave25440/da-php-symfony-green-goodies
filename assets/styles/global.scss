@@ -1,5 +1,14 @@
 @use "variables" as v;
 
+@font-face {
+    font-family: "Inter";
+    src: url("../fonts/Inter-Variable.woff2") format("woff2"),
+        url("../fonts/Inter-Variable.woff") format("woff");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 * {
     font-family: "Inter", sans-serif;
     margin: 0;
