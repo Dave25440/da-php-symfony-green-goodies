@@ -165,4 +165,13 @@ class Product
 
         return $this;
     }
+
+    public function getPicturePath(): string
+    {
+        if (!$this->picture) {
+            return '/img/product/product-default.webp';
+        }
+
+        return '/img/product/' . $this->picture;
+    }
 }
