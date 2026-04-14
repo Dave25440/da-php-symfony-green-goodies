@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width; initial-scale=1">
         <title>{% block title %}{% endblock %} - Green Goodies</title>
         <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -18,28 +17,26 @@
         {% endblock %}
     </head>
     <body>
-        <header>
-            <div class="container">
+        <header class="header">
+            <div class="header__container">
                 <a href="{{ path('app_home') }}" aria-label="Accueil">
-                    <img src="{{ asset('img/green-goodies-logo.svg') }}" alt="Logo Green Goodies">
+                    <img src="{{ asset('img/green-goodies-logo.svg') }}" alt="Logo Green Goodies" class="header__img">
                 </a>
                 <nav>
-                    <ul>
-                        <li><a href="#">Nos produits</a></li>
-                        <li><a href="#">Mon panier</a></li>
-                        <li><a href="#">Mon compte</a></li>
-                        <li><a href="#">Déconnexion</a></li>
+                    <ul class="header__list">
+                        <li><a href="#" class="header__link">Nos produits</a></li>
+                        <li><a href="#" class="header__link">Mon panier</a></li>
+                        <li><a href="#" class="header__link">Mon compte</a></li>
+                        <li><a href="#" class="header__link">Déconnexion</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
         <main>
-            <div class="container">
-                {% block body %}{% endblock %}
-            </div>
+            {% block main %}{% endblock %}
         </main>
-        <footer>
-            <div class="container">
+        <footer class="footer">
+            <div class="footer__container">
                 <p>© Green Goodies - {{ 'now'|date('Y') }}</p>
             </div>
         </footer>

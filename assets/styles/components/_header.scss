@@ -1,0 +1,37 @@
+@use "../mixins" as m;
+@use "../variables" as v;
+
+.header {
+    @include m.block-style(v.$bg-color, 31px 100px 30px);
+    @include m.text-style(v.$text-color, 0.875em, 400);
+
+    border-bottom: 1px solid v.$border-color;
+
+    &__container {
+        @include m.container-size;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__img {
+        @include m.img-style;
+    }
+
+    &__list {
+        @include m.list-style;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 53px;
+    }
+
+    &__link {
+        @include m.link-style;
+
+        &:hover {
+            @include m.text-style(v.$text-light-color, 1em, 500);
+        }
+    }
+}
