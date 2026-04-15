@@ -1,20 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% block main_class %}home{% endblock %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/dave/Library/CloudStorage/OneDrive-Personnel/Bureau/DA PHP Symfony/Projet 13/Livrables/da-php-symfony-green-goodies/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Users/dave/Library/CloudStorage/OneDrive-Personnel/Bureau/DA PHP Symfony/Projet 13/Livrables/da-php-symfony-green-goodies/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+{% block main %}
+<section class="home__welcome">
+    <div class="home__container home__container--center">
+        <div class="home__content home__content--small">
+            <h1 class="home__title home__title--large">Bienvenue</h1>
+            <p class="home__text home__text--large">Découvrez notre univers de produits durables et éthiques pour une consommation responsable.</p>
+            <p class="home__text home__text--large">Retrouvez des articles d’hygiène & beauté, des accessoires & boissons et du prêt-à-porter.</p>
+        </div>
+        <img src="{{ asset('img/protest-cherie-birkner.webp') }}" alt="Pancartes de soutien à l'écologie entreposées contre un mur">
+    </div>
+</section>
+<section class="home__products">
+    <div class="home__container home__container--column">
+        <h2 class="home__title home__title--small">Nos produits</h2>
+        <div class="home__grid">
+        {% for product in products %}
+            {{ include('components/product.html.twig', { product: product }) }}
+        {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="home__conviction">
+    <div class="home__container">
+        <div class="home__content">
+            <h2 class="home__title">Notre conviction</h2>
+            <p class="home__text">Chez Green Goodies, nous croyons en un monde où le commerce peut être synonyme de bien-être pour la planète et ses habitants. Notre mission est de vous proposer une sélection rigoureuse de produits qui allient qualité, durabilité et éthique.</p>
+        </div>
+        <img src="{{ asset('img/mimosa-christina-deravedisian.webp') }}" alt="Tige de mimosa aux couleurs d'automne">
+    </div>
+</section>
+<section class="home__values">
+    <div class="home__container">
+        <img src="{{ asset('img/garbage-zaemon.webp') }}" alt="Empilement de trois sacs poubelle verts remplis">
+        <div class="home__content home__content--large">
+            <h2 class="home__title">Nos valeurs</h2>
+            <p class="home__text">
+                Durabilité : Nous sélectionnons soigneusement des produits qui respectent l'environnement et favorisent la durabilité.<br>
+                Éthique : Nous nous engageons à travailler avec des partenaires et des fournisseurs qui partagent nos valeurs éthiques.<br>
+                Écologie : Nous encourageons des pratiques respectueuses de l'écosystème et privilégions les matériaux écologiques.
+            </p>
+        </div>
+    </div>
+</section>
 {% endblock %}
