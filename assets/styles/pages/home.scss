@@ -1,0 +1,81 @@
+@use "../mixins" as m;
+@use "../variables" as v;
+@use "../components/product";
+
+.home {
+    &__welcome {
+        background-color: v.$bg-secondary-color;
+    }
+
+    &__container {
+        @include m.flexbox($content: space-between, $items: flex-end);
+        @include m.container-size;
+
+        &--center {
+            align-items: center;
+        }
+
+        &--column {
+            @include m.flexbox($direction: column, $items: flex-start);
+        }
+    }
+
+    &__content {
+        @include m.flexbox($direction: column, $gap: 10px);
+
+        max-width: 425px;
+        padding: 0 0 40px 40px;
+
+        &--small {
+            gap: 22px;
+            max-width: 362px;
+            padding: 0 0 0 173.5px;
+        }
+
+        &--large {
+            max-width: 465px;
+        }
+    }
+
+    &__title {
+        @include m.text-style($size: 1.25em, $weight: 500);
+
+        text-transform: uppercase;
+
+        &--large {
+            font-size: 4em;
+            text-transform: none;
+            margin-bottom: 16px;
+        }
+
+        &--small {
+            font-size: 0.875em;
+            padding: 37px 100px;
+        }
+    }
+
+    &__text {
+        @include m.text-style($weight: 300);
+
+        &--large {
+            font-size: 1.125em;
+        }
+    }
+
+    &__products {
+        background-color: v.$bg-color;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    &__conviction {
+        background-color: v.$bg-dark-color;
+    }
+
+    &__values {
+        background-color: v.$bg-secondary-color;
+    }
+}
