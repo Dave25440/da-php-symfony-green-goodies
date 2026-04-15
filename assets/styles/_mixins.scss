@@ -1,14 +1,37 @@
-@mixin block-style($bg, $padding) {
-    background-color: $bg;
-    padding: $padding;
-}
+@use "variables" as v;
 
-@mixin container-size {
+@mixin container-size($padding: false) {
     max-width: 1440px;
+
+    @if $padding {
+        padding: $padding;
+    }
+
     margin: auto;
+    box-sizing: border-box;
 }
 
-@mixin img-style {
+@mixin flexbox($direction: false, $content: false, $items: false, $gap: false) {
+    display: flex;
+
+    @if $direction {
+        flex-direction: $direction;
+    }
+
+    @if $content {
+        justify-content: $content;
+    }
+
+    @if $items {
+        align-items: $items;
+    }
+
+    @if $gap {
+        gap: $gap;
+    }
+}
+
+@mixin img-block {
     display: block;
     width: 100%;
 }
@@ -24,8 +47,11 @@
     padding: 0;
 }
 
-@mixin text-style($color, $size, $weight) {    
+@mixin text-style($color: v.$text-color, $size: 0.875em, $weight: false) {    
     color: $color;
     font-size: $size;
-    font-weight: $weight;
+
+    @if $weight {
+        font-weight: $weight;
+    }
 }

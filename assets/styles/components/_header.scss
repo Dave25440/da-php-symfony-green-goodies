@@ -2,36 +2,31 @@
 @use "../variables" as v;
 
 .header {
-    @include m.block-style(v.$bg-color, 31px 100px 30px);
-    @include m.text-style(v.$text-color, 0.875em, 400);
-
+    background-color: v.$bg-color;
     border-bottom: 1px solid v.$border-color;
 
     &__container {
-        @include m.container-size;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include m.flexbox($content: space-between, $items: center);
+        @include m.container-size(31px 100px 30px);
     }
 
     &__img {
-        @include m.img-style;
+        @include m.img-block;
     }
 
     &__list {
+        @include m.flexbox($gap: 53px);
         @include m.list-style;
 
-        display: flex;
         flex-wrap: wrap;
-        gap: 53px;
     }
 
     &__link {
         @include m.link-style;
+        @include m.text-style;
 
         &:hover {
-            @include m.text-style(v.$text-light-color, 1em, 500);
+            @include m.text-style($color: v.$text-light-color, $weight: 500);
         }
     }
 }

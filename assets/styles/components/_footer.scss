@@ -2,13 +2,13 @@
 @use "../variables" as v;
 
 .footer {
-    @include m.block-style(v.$bg-light-color, 32px 100px 31px);
-    @include m.text-style(v.$text-color, 0.875em, 400);
-
-    text-align: right;
+    background-color: v.$bg-light-color;
     border-bottom: 1px solid v.$border-color;
 
     &__container {
-        @include m.container-size;
+        @include m.container-size(32px 100px 31px);
+        @include m.text-style;
+
+        text-align: right;
     }
 }
