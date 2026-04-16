@@ -168,7 +168,9 @@ class Product
 
     public function getPicturePath(): string
     {
-        if (!$this->picture) {
+        $fullPath = __DIR__ . '/../../public/img/product/' . $this->picture;
+
+        if (!$this->picture || !file_exists($fullPath)) {
             return '/img/product/product-default.webp';
         }
 
