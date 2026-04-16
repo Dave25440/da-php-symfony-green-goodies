@@ -8,6 +8,6 @@
             <p class="product__description">{{ product.shortDescription }}</p>
         </header>
         <span class="product__price">{{ product.price|number_format(2, ',') }}€</span>
-        <a href="#" class="product__link">Voir le produit</a>
+        <a href="{{ path('app_product', {id: product.id}) }}" class="product__link">Voir le produit</a>
     </div>
 </article>
