@@ -1,0 +1,57 @@
+@use "../mixins" as m;
+@use "../variables" as v;
+
+.product {
+    background-color: v.$bg-color;
+
+    &__container {
+        @include m.flexbox($gap: 119px);
+        @include m.container-size(0 0 221px);
+    }
+
+    &__figure {
+        width: 734px;
+        height: 686px;
+    }
+
+    &__img {
+        @include m.img-cover;
+    }
+
+    &__info {
+        @include m.flexbox($direction: column, $gap: 10px);
+
+        max-width: 465px;
+        padding-top: 87px;
+    }
+
+    &__title {
+        @include m.text-style($size: 1.25em, $weight: 500);
+
+        &--small {
+            @include m.text-style($color: v.$text-light-color, $size: 0.625em, $weight: 400);
+
+            margin-top: 40px;
+        }
+    }
+
+    &__price {
+        @include m.text-style($size: 1.875em, $weight: 300);
+
+        margin-top: 14px;
+    }
+
+    &__description {
+        @include m.text-style($color: v.$text-light-color);   
+
+        &:not(:first-of-type) {
+            margin-top: 4px;
+        }
+    }
+
+    &__link {
+        @include m.cta-style;
+
+        margin-top: auto;
+    }
+}

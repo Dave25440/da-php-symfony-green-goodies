@@ -11,6 +11,19 @@
     box-sizing: border-box;
 }
 
+@mixin cta-style {
+    @include link-style;
+    @include text-style($color: v.$bg-light-color);
+
+    background-color: v.$cta-bg-color;
+    text-align: center;
+    padding: 30px 0;
+
+    &:hover {
+        background-color: v.$text-dark-color;
+    }
+}
+
 @mixin flexbox($direction: false, $content: false, $items: false, $gap: false) {
     display: flex;
 

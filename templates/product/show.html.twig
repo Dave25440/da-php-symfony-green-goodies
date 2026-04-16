@@ -1,20 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProductController!{% endblock %}
+{% set page_title = product is null ? 'Produit introuvable' : product.name %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block title %}{{ page_title }}{% endblock %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('product') }}
+{% endblock %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/dave/Library/CloudStorage/OneDrive-Personnel/Bureau/DA PHP Symfony/Projet 13/Livrables/da-php-symfony-green-goodies/src/Controller/ProductController.php</code></li>
-        <li>Your template at <code>/Users/dave/Library/CloudStorage/OneDrive-Personnel/Bureau/DA PHP Symfony/Projet 13/Livrables/da-php-symfony-green-goodies/templates/product/index.html.twig</code></li>
-    </ul>
-</div>
+{% block main %}
+<section class="product">
+    <div class="product__container">
+    {% if product is null %}
+        <img src="{{ asset('img/product/product-default.webp') }}" alt="">
+        <div class="product__info">
+            <h1 class="product__title">{{ page_title }}</h1>
+        </div>
+    {% else %}
+        <figure class="product__figure">
+            <img src="{{ product.picturePath }}" alt="" class="product__img">
+        </figure>
+        <div class="product__info">
+            <h1 class="product__title">{{ page_title }}</h1>
+            <span class="product__price">{{ product.price|number_format(2, ',') }}€</span>
+            <h2 class="product__title product__title--small">Description</h2>
+            {% set description = product.fullDescription|replace({'\r\n': '\n'}) %}
+            {% for paragraph in description|split('\n\n') %}
+            <p class="product__description">{{ paragraph|e }}</p>
+            {% endfor %}
+            <a href="#" class="product__link">Ajouter au panier</a>
+        </div>
+    {% endif %}
+    </div>
+</section>
 {% endblock %}
