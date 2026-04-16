@@ -20,12 +20,14 @@
         <img src="{{ asset('img/protest-cherie-birkner.webp') }}" alt="Pancartes de soutien à l'écologie entreposées contre un mur">
     </div>
 </section>
-<section class="home__products">
+<section id="products" class="home__products">
     <div class="home__container home__container--column">
         <h2 class="home__title home__title--small">Nos produits</h2>
         <div class="home__grid">
         {% for product in products %}
             {{ include('components/product.html.twig', { product: product }) }}
+        {% else %}
+            <p class="home__content home__text">Aucun produit disponible.</p>
         {% endfor %}
         </div>
     </div>
