@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('home', './assets/styles/pages/home.scss')
+    .addEntry('login', './assets/styles/pages/login.scss')
     .addEntry('product', './assets/styles/pages/product.scss')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
