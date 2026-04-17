@@ -11,13 +11,18 @@
     box-sizing: border-box;
 }
 
-@mixin cta-style {
+@mixin cta-style($button: true) {
     @include link-style;
     @include text-style($color: v.$bg-light-color);
 
     background-color: v.$cta-bg-color;
     text-align: center;
     padding: 30px 0;
+
+    @if $button {
+        border: 0;
+        cursor: pointer;
+    }
 
     &:hover {
         background-color: v.$text-dark-color;

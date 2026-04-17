@@ -21,7 +21,7 @@
     &__info {
         @include m.flexbox($direction: column, $gap: 10px);
 
-        max-width: 465px;
+        width: 465px;
         padding-top: 87px;
     }
 
@@ -50,7 +50,7 @@
     }
 
     &__link {
-        @include m.cta-style;
+        @include m.cta-style($button: false);
 
         margin-top: auto;
     }
