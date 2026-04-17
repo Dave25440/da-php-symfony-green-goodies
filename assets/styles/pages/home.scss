@@ -75,6 +75,17 @@
         background-color: v.$bg-dark-color;
     }
 
+    &__figure {
+        width: 487px;
+        height: 646px;
+    }
+
+    &__img {
+        @include m.img-cover;
+
+        object-position: bottom;
+    }
+
     &__values {
         background-color: v.$bg-secondary-color;
     }
