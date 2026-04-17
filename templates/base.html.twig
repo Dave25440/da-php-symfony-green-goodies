@@ -22,9 +22,14 @@
                 <nav>
                     <ul class="header__list">
                         <li><a href="{{ path('app_home') }}#products" class="header__link">Nos produits</a></li>
+                        {% if app.user %}
                         <li><a href="#" class="header__link">Mon panier</a></li>
                         <li><a href="#" class="header__link">Mon compte</a></li>
-                        <li><a href="#" class="header__link">Déconnexion</a></li>
+                        <li><a href="{{ logout_path() }}" class="header__link">Déconnexion</a></li>
+                        {% else %}
+                        <li><a href="{{ path('app_login') }}" class="header__link">Connexion</a></li>
+                        <li><a href="#" class="header__link">Inscription</a></li>
+                        {% endif %}
                     </ul>
                 </nav>
             </div>
