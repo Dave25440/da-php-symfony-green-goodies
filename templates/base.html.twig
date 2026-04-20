@@ -28,7 +28,7 @@
                         <li><a href="{{ logout_path() }}" class="header__link">Déconnexion</a></li>
                         {% else %}
                         <li><a href="{{ path('app_login') }}" class="header__link">Connexion</a></li>
-                        <li><a href="#" class="header__link">Inscription</a></li>
+                        <li><a href="{{ path('app_register') }}" class="header__link">Inscription</a></li>
                         {% endif %}
                     </ul>
                 </nav>

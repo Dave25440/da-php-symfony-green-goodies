@@ -18,12 +18,12 @@
 
     &__title {
         @include m.text-style($size: 1.25em, $weight: 500);
-
-        margin-bottom: 10px;
     }
 
     &__form {
         @include m.flexbox($direction: column, $gap: 10px);
+
+        margin-top: 10px;
     }
 
     &__label {
