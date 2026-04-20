@@ -1,0 +1,53 @@
+@use "../mixins" as m;
+@use "../variables" as v;
+
+.form {
+    @include m.flexbox($direction: column, $gap: 10px);
+
+    &__label {
+        @include m.text-style($color: v.$text-light-color);
+
+        &:not(:first-child, :last-child) {
+            margin-top: 20px;
+        }
+    }
+
+    &__input {
+        @include m.input-style;
+    }
+
+    &__row {
+        @include m.flexbox($items: center, $gap: 7px);
+
+        margin-top: 20px;
+    }
+
+    &__checkbox {
+        @include m.flexbox($content: center, $items: center);
+
+        appearance: none;
+        background-color: v.$bg-color;
+        width: 19px;
+        height: 19px;
+        margin: 0;
+        border: 1px solid v.$text-light-color;
+
+        &::before {
+            content: "";
+            width: 15px;
+            height: 15px;
+            box-shadow: inset 15px 15px v.$text-color;
+            outline: 1px solid v.$text-color;
+            outline-offset: 1px;
+            transform: scale(0);
+        }
+
+        &:checked::before {
+            transform: scale(1);
+        }
+    }
+
+    &__error {
+        @include m.text-style($color: v.$text-error-color, $weight: 500);
+    }
+}

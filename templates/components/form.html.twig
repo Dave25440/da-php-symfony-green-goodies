@@ -1,0 +1,19 @@
+{% block form_row %}
+{{ form_label(form, null, {'label_attr': {'class': 'form__label'}}) }}
+{{ form_widget(form, {'attr': {'class': 'form__input'}}) }}
+    {% block form_errors %}
+        {% if errors %}
+            {% for error in errors %}
+                <p class="form__error">{{ error.message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endblock %}
+{% endblock %}
+
+{% block checkbox_row %}
+<div class="form__row">
+    {{ form_widget(form, {'attr': {'class': 'form__checkbox'}})  }}
+    {{ form_label(form, null, {'label_attr': {'class': 'form__label'}}) }}
+</div>
+{{ form_errors(form) }}
+{% endblock %}
