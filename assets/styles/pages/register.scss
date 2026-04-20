@@ -1,0 +1,46 @@
+@use "../mixins" as m;
+@use "../variables" as v;
+@use "../components/form";
+
+.register {
+    background-color: v.$bg-color;
+
+    &__container {
+        @include m.flexbox($gap: 114px);
+        @include m.container-size;
+    }
+
+    &__content {
+        @include m.flexbox($direction: column, $gap: 10px);
+
+        width: 479px;
+        padding-top: 80px;
+    }
+
+    &__title {
+        @include m.text-style($size: 1.25em, $weight: 500);
+    }
+
+    &__text {
+        @include m.text-style($color: v.$text-light-color, $size: 0.75em);
+    }
+
+    &__form {
+        @extend .form;
+
+        margin-top: 14px;
+    }
+
+    &__submit {
+        @include m.cta-style;
+
+        margin-top: 38px;
+    }
+
+    &__link {
+        @include m.text-style($color: v.$text-light-color);
+
+        text-align: center;
+        margin-top: 17px;
+    }
+}

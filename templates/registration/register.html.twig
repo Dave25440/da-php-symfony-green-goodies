@@ -1,19 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
-{% block body %}
-    <h1>Register</h1>
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('register') }}
+{% endblock %}
 
-    {{ form_errors(registrationForm) }}
+{% form_theme registrationForm 'components/form.html.twig' %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+{% block main %}
+<section class="register">
+    <div class="register__container">
+        <img src="{{ asset('img/bush-nahil-naseer.webp') }}" alt="Buisson à feuillage vert vu de dessus">
+        <div class="register__content">
+            <h1 class="register__title">Inscription</h1>
+            <p class="register__text">Tous les champs sont obligatoires.</p>
+            {{ form_start(registrationForm, {'attr': {'class': 'register__form'}}) }}
+                {{ form_row(registrationForm.lastName) }}
+                {{ form_row(registrationForm.firstName) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.plainPassword) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+                <button type="submit" class="register__submit">S'inscrire</button>
+            {{ form_end(registrationForm) }}
+            <a href="{{ path('app_login') }}" class="register__link">Déjà un compte ? Se connecter</a>
+        </div>
+    </div>
+</section>
 {% endblock %}
