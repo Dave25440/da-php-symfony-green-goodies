@@ -1,0 +1,74 @@
+@use "../mixins" as m;
+@use "../variables" as v;
+
+.account {
+    background-color: v.$bg-tertiary-color;
+
+    &__container {
+        @include m.flexbox($direction: column, $items: center, $gap: 15px);
+        @include m.container-size(43px 0 77px);
+    }
+
+    &__title {
+        @include m.text-style($size: 1.25em, $weight: 500);
+
+        &--small {
+            @include m.text-style($color: v.$text-dark-color, $size: 0.875em, $weight: 600);
+        }
+    }
+
+    &__section {
+        @include m.flexbox($direction: column, $gap: 30px);
+
+        background-color: v.$bg-color;
+        width: 479px;
+        padding: 60px 62.5px;
+
+        &--large {
+            width: 484px;
+            padding: 60px 60px 31px;
+            margin-top: 28px;
+        }
+    }
+
+    &__text {
+        @include m.text-style($weight: 500);
+
+        margin-bottom: 29px;
+    }
+
+    &__table {
+        text-align: left;
+        border-collapse: collapse;
+    }
+
+    &__column {
+        @include m.text-style($weight: 500);
+
+        padding: 20px 0 29px;
+
+        &:first-child {
+            width: 38%;
+        }
+
+        &:nth-child(2) {
+            width: 50.6%;
+        }
+
+        &--head {
+            @include m.text-style($color: v.$text-light-color, $weight: 400);
+
+            padding: 0;
+        }
+    }
+
+    &__row {
+        &:not(:last-child) {
+            border-bottom: 1px solid v.$border-dark-color;
+        }
+    }
+
+    &__link {
+        @include m.cta-style($button: false);
+    }
+}

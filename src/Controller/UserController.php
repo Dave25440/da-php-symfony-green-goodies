@@ -8,11 +8,17 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
-    public function index(): Response
+    #[Route('/account', name: 'app_account', methods: ['GET'])]
+    public function show(): Response
     {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
+        $orders = $user->getOrders();
+
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+            'orders' => $orders,
         ]);
     }
 }
