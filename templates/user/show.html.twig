@@ -43,7 +43,10 @@
         </section>
         <section class="account__section">
             <h2 class="sr-only">Gestion de mon compte</h2>
-            <a href="#" class="account__link">Supprimer mon compte</a>
+            <form action="{{ path('app_account_delete') }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer votre compte ?');" class="account__form">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit" class="account__submit">Supprimer mon compte</button>
+            </form>
         </section>
     </div>
 </section>
