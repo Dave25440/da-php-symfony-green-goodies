@@ -2,12 +2,19 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 final class UserController extends AbstractController
 {
+    public function __construct(
+        private EntityManagerInterface $manager,
+    ) {}
+
     #[Route('/account', name: 'app_account', methods: ['GET'])]
     public function show(): Response
     {
@@ -20,5 +27,19 @@ final class UserController extends AbstractController
             'user' => $user,
             'orders' => $orders,
         ]);
+    }
+
+    #[Route('/account/delete', name: 'app_account_delete', methods: ['DELETE'])]
+    public function delete(TokenStorageInterface $tokenStorage, Request $request): Response
+    {
+        $user = $this->getUser();
+
+        $this->manager->remove($user);
+        $this->manager->flush();
+
+        $tokenStorage->setToken(null);
+        $request->getSession()->invalidate();
+
+        return $this->redirectToRoute('app_home');
     }
 }
