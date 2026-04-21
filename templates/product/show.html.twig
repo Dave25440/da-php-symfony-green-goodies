@@ -23,7 +23,7 @@
         </figure>
         <div class="product__info">
             <h1 class="product__title">{{ page_title }}</h1>
-            <span class="product__price">{{ product.price|number_format(2, ',') }}€</span>
+            <span class="product__price">{{ product.price|number_format(2, ',', '') }}€</span>
             <h2 class="product__title product__title--small">Description</h2>
             {% set description = product.fullDescription|replace({'\r\n': '\n'}) %}
             {% for paragraph in description|split('\n\n') %}
