@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -26,8 +27,8 @@ final class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/cart/add/{id}', name: 'app_cart_add', methods: ['GET'])]
-    public function add(Product $product): Response
+    #[Route('/cart/add/{id}', name: 'app_cart_add', methods: ['POST'])]
+    public function add(Product $product, Request $request): Response
     {
         $session = $this->requestStack->getSession();
 
@@ -36,11 +37,17 @@ final class CartController extends AbstractController
 
         $id = $product->getId();
 
-        if (!empty($cart[$id])) {
-            $cart[$id]++;
+        $quantity = (int) $request->request->get('quantity', 1);
+
+        if ($quantity <= 0) {
+            unset($cart[$id]);
+            $order = array_filter($order, fn($productId) => $productId !== $id);
         } else {
-            $cart[$id] = 1;
-            $order[] = $id;
+            $cart[$id] = $quantity;
+
+            if (!in_array($id, $order)) {
+                $order[] = $id;
+            }
         }
 
         $session->set('cart', $cart);
