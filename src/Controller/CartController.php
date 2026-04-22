@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
-use App\Repository\ProductRepository;
+use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,47 +16,13 @@ final class CartController extends AbstractController
     ) {}
 
     #[Route('/cart', name: 'app_cart', methods: ['GET'])]
-    public function show(ProductRepository $productRepository): Response
+    public function show(CartService $cartService): Response
     {
-        $session = $this->requestStack->getSession();
-
-        $cart = $session->get('cart', []);
-        $order = $session->get('order', []);
-
-        $cartItems = [];
-        $total = 0;
-
-        if (!empty($cart)) {
-            $products = $productRepository->findBy(['id' => array_keys($cart)]);
-            $productsById = [];
-
-            foreach ($products as $product) {
-                $productsById[$product->getId()] = $product;
-            }
-
-            foreach ($order as $id) {
-                if (!isset($productsById[$id])) {
-                    continue;
-                }
-
-                $product = $productsById[$id];
-                $quantity = $cart[$id];
-
-                $cartItems[] = [
-                    'product' => $product,
-                    'quantity' => $quantity,
-                    'itemTotal' => $product->getPrice() * $quantity,
-                ];
-            }
-
-            foreach ($cartItems as $item) {
-                $total += $item['itemTotal'];
-            }
-        }
+        $cart = $cartService->getCart();
 
         return $this->render('cart/show.html.twig', [
-            'cartItems' => $cartItems,
-            'total' => $total,
+            'cartItems' => $cart['cartItems'],
+            'total' => $cart['total'],
         ]);
     }
 
