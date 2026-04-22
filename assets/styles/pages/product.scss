@@ -49,6 +49,27 @@
         }
     }
 
+    &__form {
+        @include m.flexbox($direction: column, $gap: 10px);
+
+        margin-top: auto;
+    }
+
+    &__label {
+        @include m.text-style($color: v.$text-light-color);
+    }
+
+    &__input {
+        @include m.text-style($color: v.$text-light-color);
+
+        background-color: v.$bg-color;
+        border: 0;
+    }
+
+    &__submit {
+        @include m.cta-style;
+    }
+
     &__link {
         @include m.cta-style($button: false);
 

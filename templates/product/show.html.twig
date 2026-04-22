@@ -30,7 +30,13 @@
             <p class="product__description">{{ paragraph|e }}</p>
             {% endfor %}
             {% if app.user %}
-            <a href="{{ path('app_cart_add', {id: product.id}) }}" class="product__link">Ajouter au panier</a>
+            <form action="{{ path('app_cart_add', {id: product.id}) }}" method="post" class="product__form">
+                <div>
+                    <label for="quantity" class="product__label">Quantité :</label>
+                    <input type="number" name="quantity" id="quantity" class="product__input" min="0" max="99" value="{{ quantity > 0 ? quantity : 1 }}" required>
+                </div>
+                <button type="submit" class="product__submit">{{ quantity > 0 ? 'Mettre à jour' : 'Ajouter au panier' }}</button>
+            </form>
             {% else %}
             <a href="{{ path('app_login')}}" class="product__link">Connexion</a>
             {% endif %}
