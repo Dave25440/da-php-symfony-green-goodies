@@ -1,2 +1,22 @@
+@use "mixins" as m;
+@use "variables" as v;
 @use "components/header";
 @use "components/footer";
+
+.alert {
+    @include m.flexbox($direction: column, $items: center, $gap: 6px);
+    @include m.text-style($weight: 500);
+
+    background-color: v.$bg-light-color;
+    padding: 30px 0;
+
+    &--error,
+    &--warning {
+        color: v.$text-error-color;
+    }
+
+    &--info,
+    &--success {
+        background-color: v.$bg-secondary-color;
+    }
+}
