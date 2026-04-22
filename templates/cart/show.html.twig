@@ -17,7 +17,7 @@
             <a href="{{ path('app_home') }}#products" class="cart__cta">Trouver des produits</a>
         </section>
     {% else %}
-        <span class="cart__span"><a href="#" class="cart__link">x Vider le panier</a></span>
+        <span class="cart__span"><a href="{{ path('app_cart_empty') }}" class="cart__link">x Vider le panier</a></span>
     {% for item in cartItems %}
         <article class="cart__item">
             <figure class="cart__figure">

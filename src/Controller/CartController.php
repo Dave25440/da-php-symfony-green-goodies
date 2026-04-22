@@ -82,4 +82,15 @@ final class CartController extends AbstractController
 
         return $this->redirectToRoute('app_cart');
     }
+
+    #[Route('/cart/empty', name: 'app_cart_empty', methods: ['GET'])]
+    public function empty(): Response
+    {
+        $session = $this->requestStack->getSession();
+
+        $session->remove('cart');
+        $session->remove('order');
+
+        return $this->redirectToRoute('app_cart');
+    }
 }
