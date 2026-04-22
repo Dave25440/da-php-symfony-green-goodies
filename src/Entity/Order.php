@@ -41,7 +41,7 @@ class Order
     /**
      * @var Collection<int, OrderItem>
      */
-    #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'purchase', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'purchase', orphanRemoval: true, cascade: ['persist'])]
     private Collection $orderItems;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
