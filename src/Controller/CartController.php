@@ -16,6 +16,12 @@ final class CartController extends AbstractController
         private RequestStack $requestStack,
     ) {}
 
+    /**
+     * Affiche la page "Mon panier".
+     *
+     * @param CartService $cartService Permet de récupérer le panier.
+     * @return Response
+     */
     #[Route('/cart', name: 'app_cart', methods: ['GET'])]
     public function show(CartService $cartService): Response
     {
@@ -27,6 +33,13 @@ final class CartController extends AbstractController
         ]);
     }
 
+    /**
+     * Ajoute le produit au panier avec la quantité.
+     *
+     * @param Product $product
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/cart/add/{id}', name: 'app_cart_add', methods: ['POST'])]
     public function add(Product $product, Request $request): Response
     {
@@ -56,6 +69,11 @@ final class CartController extends AbstractController
         return $this->redirectToRoute('app_cart');
     }
 
+    /**
+     * Vide le panier.
+     *
+     * @return Response
+     */
     #[Route('/cart/empty', name: 'app_cart_empty', methods: ['GET'])]
     public function empty(): Response
     {

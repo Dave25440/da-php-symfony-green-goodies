@@ -12,6 +12,18 @@ class CartService
         private ProductRepository $productRepository,
     ) {}
 
+    /**
+     * Récupère les éléments du panier avec quantités et totaux.
+     *
+     * @return array{
+     *     cartItems: array<int, array{
+     *         product: Product,
+     *         quantity: int,
+     *         itemTotal: float
+     *     }>,
+     *     total: float
+     * }
+     */
     public function getCart(): array
     {        
         $session = $this->requestStack->getSession();

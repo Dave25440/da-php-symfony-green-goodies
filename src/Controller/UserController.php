@@ -15,6 +15,11 @@ final class UserController extends AbstractController
         private EntityManagerInterface $manager,
     ) {}
 
+    /**
+     * Affiche la page "Mon compte".
+     *
+     * @return Response
+     */
     #[Route('/account', name: 'app_account', methods: ['GET'])]
     public function show(): Response
     {
@@ -29,6 +34,13 @@ final class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * Supprime le compte de l'utilisateur authentifié et invalide la session.
+     *
+     * @param TokenStorageInterface $tokenStorage
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/account/delete', name: 'app_account_delete', methods: ['DELETE'])]
     public function delete(TokenStorageInterface $tokenStorage, Request $request): Response
     {

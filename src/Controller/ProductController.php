@@ -14,6 +14,12 @@ final class ProductController extends AbstractController
         private RequestStack $requestStack,
     ) {}
 
+    /**
+     * Affiche la page produit.
+     *
+     * @param Product|null $product Le produit affiché ou null si non trouvé.
+     * @return Response
+     */
     #[Route('/product/{id}', name: 'app_product', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function show(?Product $product): Response
     {

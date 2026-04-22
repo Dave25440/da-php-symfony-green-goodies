@@ -18,6 +18,12 @@ final class OrderController extends AbstractController
         private RequestStack $requestStack,
     ) {}
 
+    /**
+     * Enregistre la commande dans la base de données.
+     *
+     * @param CartService $cartService Permet de récupérer le panier.
+     * @return Response
+     */
     #[Route('/order/new', name: 'app_order_new', methods: ['POST'])]
     public function new(CartService $cartService): Response
     {
