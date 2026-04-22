@@ -29,7 +29,11 @@
             {% for paragraph in description|split('\n\n') %}
             <p class="product__description">{{ paragraph|e }}</p>
             {% endfor %}
-            <a href="#" class="product__link">Ajouter au panier</a>
+            {% if app.user %}
+            <a href="{{ path('app_cart_add', {id: product.id}) }}" class="product__link">Ajouter au panier</a>
+            {% else %}
+            <a href="{{ path('app_login')}}" class="product__link">Connexion</a>
+            {% endif %}
         </div>
     {% endif %}
     </div>
