@@ -17,7 +17,7 @@ class CartService
      *
      * @return array{
      *     cartItems: array<int, array{
-     *         product: Product,
+     *         product: \App\Entity\Product,
      *         quantity: int,
      *         itemTotal: float
      *     }>,
