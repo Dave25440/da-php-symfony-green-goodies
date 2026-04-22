@@ -1,0 +1,103 @@
+@use "../mixins" as m;
+@use "../variables" as v;
+
+.cart {
+    background-color: v.$bg-tertiary-color;
+
+    &__container {
+        @include m.flexbox($direction: column, $items: center, $gap: 5px);
+        @include m.container-size(102px 0 146px);
+    }
+
+    &__title {
+        @include m.text-style($color: v.$text-dark-color, $weight: 600);
+
+        &--large {
+            @include m.text-style($size: 1.25em, $weight: 500);
+        }
+
+        &--small {
+            @include m.text-style($weight: 500);
+        }
+    }
+
+    &__span {
+        @include m.flexbox;
+
+        width: 604px;
+        margin: 11px 0 12px;
+    }
+
+    &__link {
+        @include m.link-style;
+        @include m.text-style($color: v.$text-light-color);
+
+        &:hover {
+            @include m.text-style($color: v.$text-light-color, $weight: 500);
+
+            text-decoration: underline;
+        }
+    }
+
+    &__item {
+        @include m.flexbox($items: center, $gap: 55px);
+
+        background-color: v.$bg-color;
+        width: 518px;
+        padding: 40px 43px 47px;
+
+        &--total {
+            @include m.flexbox($content: flex-end, $gap: 0);
+
+            background-color: rgba(255, 253, 247, 0.7);
+            width: 528px;
+            padding: 20px 38px 19px;
+        }
+    }
+
+    &__figure {
+        width: 142px;
+        height: 133px;
+    }
+
+    &__img {
+        @include m.img-cover;
+    }
+
+    &__info {
+        @include m.flexbox($direction: column, $gap: 6px);
+    }
+
+    &__text {
+        @include m.text-style($color: v.$text-light-color);
+
+        &--small {
+            @include m.text-style($color: v.$text-light-color, $size: 0.75em); 
+
+            margin-top: 3px;
+        }
+    }
+
+    &__price {
+        @include m.text-style($size: 1.125em, $weight: 500);
+
+        margin-top: 7px;
+
+        &--total {
+            @include m.text-style($size: 1.43em, $weight: 400);
+
+            margin: 0 0 0 4px;
+        }
+    }
+
+    &__form {
+        @include m.flexbox($direction: column);
+
+        width: 479px;
+        margin-top: 24px;
+    }
+
+    &__submit {
+        @include m.cta-style;
+    }
+}

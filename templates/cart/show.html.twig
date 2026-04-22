@@ -1,20 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!{% endblock %}
+{% block title %}Mon panier{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('cart') }}
+{% endblock %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Users/dave/Library/CloudStorage/OneDrive-Personnel/Bureau/DA PHP Symfony/Projet 13/Livrables/da-php-symfony-green-goodies/src/Controller/CartController.php</code></li>
-        <li>Your template at <code>/Users/dave/Library/CloudStorage/OneDrive-Personnel/Bureau/DA PHP Symfony/Projet 13/Livrables/da-php-symfony-green-goodies/templates/cart/index.html.twig</code></li>
-    </ul>
-</div>
+{% block main %}
+<section class="cart">
+    <div class="cart__container">
+        <h1 class="cart__title cart__title--large">Mon panier</h1>
+        <span class="cart__span"><a href="#" class="cart__link">x Vider le panier</a></span>
+        <article class="cart__item">
+            <figure class="cart__figure">
+                <img src="{{ asset('img/product/necessaire-deodorant-bio-2.webp') }}" alt="" class="cart__img">
+            </figure>
+            <div class="cart__info">
+                <h2 class="cart__title">Nécessaire, déodorant Bio</h2>
+                <p class="cart__text">Quantité : 1</p>
+                <span class="cart__price">8,50€</span>
+            </div>
+        </article>
+        <section class="cart__item cart__item--total">
+            <div>
+                <h2 class="cart__title cart__title--small">
+                    Total panier :
+                    <span class="cart__price cart__price--total">8,50€</span>
+                </h2>
+                <p class="cart__text cart__text--small">Frais de livraison : Offerts</p>
+            </div>
+        </section>
+        <form action="{{ path('app_order_new') }}" method="post" class="cart__form">
+            <button type="submit" class="cart__submit">Valider la commande</button>
+        </form>
+    </div>
+</section>
 {% endblock %}
