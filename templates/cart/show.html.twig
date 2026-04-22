@@ -11,22 +11,30 @@
 <section class="cart">
     <div class="cart__container">
         <h1 class="cart__title cart__title--large">Mon panier</h1>
+    {% if cartItems is empty %}
+        <section class="cart__empty">
+            <h2 class="cart__title cart__title--small">Votre panier est vide.</h2>
+            <a href="{{ path('app_home') }}#products" class="cart__cta">Trouver des produits</a>
+        </section>
+    {% else %}
         <span class="cart__span"><a href="#" class="cart__link">x Vider le panier</a></span>
+    {% for item in cartItems %}
         <article class="cart__item">
             <figure class="cart__figure">
-                <img src="{{ asset('img/product/necessaire-deodorant-bio-2.webp') }}" alt="" class="cart__img">
+                <img src="{{ item.product.picturePath }}" alt="" class="cart__img">
             </figure>
             <div class="cart__info">
-                <h2 class="cart__title">Nécessaire, déodorant Bio</h2>
-                <p class="cart__text">Quantité : 1</p>
-                <span class="cart__price">8,50€</span>
+                <h2 class="cart__title">{{ item.product.name }}</h2>
+                <p class="cart__text">Quantité : {{ item.quantity }}</p>
+                <span class="cart__price">{{ item.itemTotal|number_format(2, ',', '') }}€</span>
             </div>
         </article>
+    {% endfor %}
         <section class="cart__item cart__item--total">
             <div>
                 <h2 class="cart__title cart__title--small">
                     Total panier :
-                    <span class="cart__price cart__price--total">8,50€</span>
+                    <span class="cart__price cart__price--total">{{ total|number_format(2, ',', '') }}€</span>
                 </h2>
                 <p class="cart__text cart__text--small">Frais de livraison : Offerts</p>
             </div>
@@ -34,6 +42,7 @@
         <form action="{{ path('app_order_new') }}" method="post" class="cart__form">
             <button type="submit" class="cart__submit">Valider la commande</button>
         </form>
+    {% endif %}
     </div>
 </section>
 {% endblock %}

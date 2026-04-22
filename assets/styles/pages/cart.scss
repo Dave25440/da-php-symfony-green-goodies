@@ -100,4 +100,15 @@
     &__submit {
         @include m.cta-style;
     }
+
+    &__empty {
+        @include m.flexbox($direction: column, $gap: 29px);
+
+        width: 479px;
+        margin-top: 11px;
+    }
+
+    &__cta {
+        @include m.cta-style($button: false);
+    }
 }
