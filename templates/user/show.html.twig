@@ -39,7 +39,15 @@
         </section>
         <section class="account__section">
             <h2 class="account__title account__title--small">Mon accès API</h2>
-            <a href="#" class="account__link">Activer mon accès API</a>
+        {% if is_granted('ROLE_API') %}
+            <form action="{{ path('app_account_api_disable') }}" method="post" class="account__form">
+                <button type="submit" class="account__submit">Désactiver mon accès API</button>
+            </form>
+        {% else %}
+            <form action="{{ path('app_account_api_enable') }}" method="post" class="account__form">
+                <button type="submit" class="account__submit">Activer mon accès API</button>
+            </form>
+        {% endif %}
         </section>
         <section class="account__section">
             <h2 class="sr-only">Gestion de mon compte</h2>

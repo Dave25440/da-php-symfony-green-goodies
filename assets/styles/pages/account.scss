@@ -68,10 +68,6 @@
         }
     }
 
-    &__link {
-        @include m.cta-style($button: false);
-    }
-
     &__form {
         @include m.flexbox($direction: column);
     }
