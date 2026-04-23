@@ -19,7 +19,7 @@ class AuthenticationSuccessListener
         $user = $event->getUser();
 
         if (!$user || !in_array('ROLE_API', $user->getRoles(), true)) {
-            throw new HttpException(Response::HTTP_FORBIDDEN, 'Accès API désactivé.');
+            throw new HttpException(Response::HTTP_FORBIDDEN, 'Accès API non activé.');
         }
     }
 }
