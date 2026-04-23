@@ -31,7 +31,6 @@ final class UserController extends AbstractController
         $orders = $user->getOrders();
 
         return $this->render('user/show.html.twig', [
-            'user' => $user,
             'orders' => $orders,
         ]);
     }

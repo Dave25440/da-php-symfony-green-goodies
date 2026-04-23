@@ -38,7 +38,7 @@
         padding: 30px 0;
 
         &:hover {
-            @include m.text-style($color: v.$cta-color);
+            @include m.text-style($color: v.$bg-color);
 
             background-color: v.$text-color;
         }
