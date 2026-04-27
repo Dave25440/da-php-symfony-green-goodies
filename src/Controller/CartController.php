@@ -50,16 +50,21 @@ final class CartController extends AbstractController
 
         $id = $product->getId();
 
+        // Récupère la quantité envoyée dans le formulaire avec POST (1 par défaut).
         $quantity = (int) $request->request->get('quantity', 1);
 
         if ($quantity <= 0) {
+            // Retire le produit du panier.
             unset($cart[$id]);
+
+            // Retire le produit de la liste ordonnée.
             $order = array_filter($order, fn($productId) => $productId !== $id);
         } else {
+            // Met à jour la quantité du produit.
             $cart[$id] = $quantity;
 
             if (!in_array($id, $order)) {
-                $order[] = $id;
+                $order[] = $id; // Ajoute le produit au tableau $order.
             }
         }
 

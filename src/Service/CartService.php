@@ -25,7 +25,7 @@ class CartService
      * }
      */
     public function getCart(): array
-    {        
+    {
         $session = $this->requestStack->getSession();
 
         $cart = $session->get('cart', []);
@@ -38,13 +38,15 @@ class CartService
             $products = $this->productRepository->findBy(['id' => array_keys($cart)]);
             $productsById = [];
 
+            // Associe chaque produit à son id.
             foreach ($products as $product) {
                 $productsById[$product->getId()] = $product;
             }
 
+            // Boucle sur la liste ordonnée des produits.
             foreach ($order as $id) {
                 if (!isset($productsById[$id])) {
-                    continue;
+                    continue; // Ignore chaque produit absent de la base de données.
                 }
 
                 $product = $productsById[$id];

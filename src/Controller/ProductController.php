@@ -28,6 +28,7 @@ final class ProductController extends AbstractController
         $cart = $session->get('cart', []);
         $quantity = 0;
 
+        // Récupère la quantité du produit dans le panier.
         if ($product && isset($cart[$product->getId()])) {
             $quantity = $cart[$product->getId()];
         }

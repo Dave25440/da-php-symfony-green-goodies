@@ -41,6 +41,7 @@ final class OrderController extends AbstractController
         $order->setTotal($cart['total']);
         $order->setUser($user);
 
+        // Boucle sur les éléments du panier pour créer chaque ligne de commande.
         foreach ($cart['cartItems'] as $item) {
             $orderItem = new OrderItem();
             $orderItem->setQuantity($item['quantity']);
