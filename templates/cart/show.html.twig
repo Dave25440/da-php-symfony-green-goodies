@@ -11,14 +11,14 @@
 <section class="cart">
     <div class="cart__container">
         <h1 class="cart__title cart__title--large">Mon panier</h1>
-    {% if cartItems is empty %}
+        {% if cartItems is empty %}
         <section class="cart__empty">
             <h2 class="cart__title cart__title--small">Votre panier est vide.</h2>
             <a href="{{ path('app_home') }}#products" class="cart__cta">Trouver des produits</a>
         </section>
-    {% else %}
+        {% else %}
         <span class="cart__span"><a href="{{ path('app_cart_empty') }}" class="cart__link">x Vider le panier</a></span>
-    {% for item in cartItems %}
+        {% for item in cartItems %}
         <article class="cart__item">
             <figure class="cart__figure">
                 <img src="{{ item.product.picturePath }}" alt="" class="cart__img">
@@ -29,7 +29,7 @@
                 <span class="cart__price">{{ item.itemTotal|number_format(2, ',', '') }}€</span>
             </div>
         </article>
-    {% endfor %}
+        {% endfor %}
         <section class="cart__item cart__item--total">
             <div>
                 <h2 class="cart__title cart__title--small">
@@ -42,7 +42,7 @@
         <form action="{{ path('app_order_new') }}" method="post" class="cart__form">
             <button type="submit" class="cart__submit">Valider la commande</button>
         </form>
-    {% endif %}
+        {% endif %}
     </div>
 </section>
 {% endblock %}

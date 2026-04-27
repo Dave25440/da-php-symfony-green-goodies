@@ -13,9 +13,9 @@
         <h1 class="account__title">Mon compte</h1>
         <section class="account__section account__section--large">
             <h2 class="account__title account__title--small">Mes commandes</h2>
-        {% if orders is empty %}
+            {% if orders is empty %}
             <p class="account__text">Aucune commande enregistrée.</p>
-        {% else %}
+            {% else %}
             <table class="account__table">
                 <caption class="sr-only">Liste des commandes enregistrées</caption>
                 <thead>
@@ -26,28 +26,28 @@
                     </tr>
                 </thead>
                 <tbody class="account__tbody">
-                {% for order in orders %}
+                    {% for order in orders %}
                     <tr class="account__row">
                         <th scope="row" class="account__column">{{ '%02d'|format(order.id) }}</th>
                         <td class="account__column">{{ order.date|date('d/m/Y') }}</td>
                         <td class="account__column">{{ order.total|number_format(2, ',', '') }}€</td>
                     </tr>
-                {% endfor %}
+                    {% endfor %}
                 </tbody>
             </table>
-        {% endif %}
+            {% endif %}
         </section>
         <section class="account__section">
             <h2 class="account__title account__title--small">Mon accès API</h2>
-        {% if is_granted('ROLE_API') %}
+            {% if is_granted('ROLE_API') %}
             <form action="{{ path('app_account_api_disable') }}" method="post" class="account__form">
                 <button type="submit" class="account__submit">Désactiver mon accès API</button>
             </form>
-        {% else %}
+            {% else %}
             <form action="{{ path('app_account_api_enable') }}" method="post" class="account__form">
                 <button type="submit" class="account__submit">Activer mon accès API</button>
             </form>
-        {% endif %}
+            {% endif %}
         </section>
         <section class="account__section">
             <h2 class="sr-only">Gestion de mon compte</h2>
